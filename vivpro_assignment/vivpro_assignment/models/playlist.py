@@ -29,3 +29,4 @@ class Playlist(Base):
     num_sections= Column(Integer)
     num_segments= Column(Integer)
     class_name = Column('class', Integer)
+    start_rating = Column(Integer)

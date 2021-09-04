@@ -3,3 +3,4 @@ def includeme(config):
     config.add_route('home', '/')
     config.add_route('get_playlist', '/get-playlist')
     config.add_route('get_song_by_title','get-playlist/{title}')
+    config.add_route('add_rating', 'add-rating')

@@ -21,6 +21,7 @@
         <th>num_sections</th>
         <th>num_segments</th>
         <th>class</th>
+        <th>Rating</th>
     </tr>
 
     {% for item in result %}
@@ -43,6 +44,7 @@
     <td>{{ item.num_sections}} </td>
     <td>{{ item.num_segments}} </td>
     <td>{{ item.class_name}} </td>
+    <td>{{ item.start_rating}} </td>
     </tr>
     {% endfor%}
 

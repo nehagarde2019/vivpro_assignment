@@ -29,5 +29,3 @@ class Playlist(Base):
     num_sections= Column(Integer)
     num_segments= Column(Integer)
     def_ = Column('class', Integer)
-
-Index('my_index', Playlist.id, unique=True)

@@ -28,4 +28,4 @@ class Playlist(Base):
     num_bars= Column(Integer)
     num_sections= Column(Integer)
     num_segments= Column(Integer)
-    def_ = Column('class', Integer)
+    class_name = Column('class', Integer)

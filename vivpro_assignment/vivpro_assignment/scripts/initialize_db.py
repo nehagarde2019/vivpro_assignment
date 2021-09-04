@@ -12,10 +12,16 @@ def setup_models(dbsession):
     Add or update models / fixtures in the database.
 
     """
-    model = models.mymodel.MyModel(name='one', value=1)
-    dbsession.add(model)
+    # model = models.mymodel.MyModel(name='one', value=1)
+    # dbsession.add(model)
 
+    import pandas as pd
 
+    df = pd.read_json(r"D:\full stack\assignment\vivpro_assignment\vivpro_assignment\scripts"
+                      r"\playlist.json")
+    df.rename(columns={'class': 'class_name'}, inplace=True)
+    for index, row in df.iterrows():
+        dbsession.add(models.playlist.Playlist(**row))
 
 
 def parse_args(argv):

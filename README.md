@@ -1,9 +1,11 @@
 # vivpro_assignment
 1. Clone Project
-2. Move to project directory run:
+2. Create postgres Database vivpro- Modify ini file to desired db connection
+   Current: sqlalchemy.url = postgresql://postgres:postgres@localhost:5432/vivpro
+3. Move to project directory run:
   pip install -e .
   This will install dependencies
-3. alembic -c development.ini revision --autogenerate -m "init"  - Revision
+3. alembic -c development.ini revision --autogenerate -m "init"  - Create Revision
 4. alembic -c development.ini upgrade head - Upgrade to that revision
 5.Initialize Database: This will flatten the json to required format 
   initialize_vivpro_assignment_db development.ini

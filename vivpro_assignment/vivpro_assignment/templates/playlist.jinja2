@@ -1,0 +1,51 @@
+<html>
+<head>PlayList</head>
+<body>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>danceability</th>
+        <th>energy</th>
+        <th>key</th>
+        <th>loudness</th>
+        <th>mode</th>
+        <th>acousticness</th>
+        <th>instrumentalness</th>
+        <th>liveness</th>
+        <th>valence</th>
+        <th>tempo</th>
+        <th>duration_ms</th>
+        <th>time_signature</th>
+        <th>num_bars</th>
+        <th>num_sections</th>
+        <th>num_segments</th>
+        <th>class</th>
+    </tr>
+
+    {% for item in result %}
+    <tr>
+    <td>{{ item.id}} </td>
+    <td>{{ item.title}} </td>
+    <td>{{ item.danceability}} </td>
+    <td>{{ item.energy}} </td>
+    <td>{{ item.key}} </td>
+    <td>{{ item.loudness}} </td>
+    <td>{{ item.mode}} </td>
+    <td>{{ item.acousticness}} </td>
+    <td>{{ item.instrumentalness}} </td>
+    <td>{{ item.liveness}} </td>
+    <td>{{ item.valence}} </td>
+    <td>{{ item.tempo}} </td>
+    <td>{{ item.duration_ms}} </td>
+    <td>{{ item.time_signature}} </td>
+    <td>{{ item.num_bars}} </td>
+    <td>{{ item.num_sections}} </td>
+    <td>{{ item.num_segments}} </td>
+    <td>{{ item.class_name}} </td>
+    </tr>
+    {% endfor%}
+
+</table>
+</body>
+</html>

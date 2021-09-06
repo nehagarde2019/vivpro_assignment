@@ -5,7 +5,8 @@ from requests import Response
 from sqlalchemy.exc import SQLAlchemyError
 
 from ..models import Playlist
-
+MIN_RATING = 1
+MAX_RATING = 5
 def result_dict(data_set):
     if isinstance(data_set, list):
         data_set = [dict(zip(row.keys(), row)) for row in data_set]
@@ -32,7 +33,7 @@ def get_playlist(request):
     except SQLAlchemyError as e:
         raise exc.HTTPInternalServerError()
     except Exception as e:
-        return render_to_response(status=500)
+        raise exc.HTTPBadRequest()
     else:
         return render_to_response('vivpro_assignment:templates/playlist.jinja2',
                               {"result":result_dict(result)}, request=request)
@@ -53,7 +54,7 @@ def get_song_by_title(request):
     except SQLAlchemyError as e:
         raise exc.HTTPInternalServerError()
     except Exception as e:
-        return render_to_response(status=500)
+        raise exc.HTTPBadRequest()
     else:
         return render_to_response('vivpro_assignment:templates/playlist.jinja2',
                               {"result":result_dict(result)}, request=request)
@@ -62,6 +63,9 @@ def get_song_by_title(request):
 @view_config(route_name='add_rating', request_method='PUT')
 def add_rating(request):
     try:
+        if not isinstance(request.json_body["star_rating"], int) or \
+                not MIN_RATING <= request.json_body["star_rating"] <= MAX_RATING:
+            raise exc.HTTPBadRequest()
         request.dbsession.query(Playlist).\
             filter(Playlist.title == request.json_body["title"]).\
             update({"start_rating": request.json_body["star_rating"]})
@@ -69,6 +73,6 @@ def add_rating(request):
     except SQLAlchemyError as e:
         raise exc.HTTPInternalServerError()
     except Exception as e:
-        return render_to_response(status=500)
+        raise exc.HTTPBadRequest()
     else:
         return exc.HTTPFound(location='http://localhost:6543/get-playlist/'+request.json_body["title"])
